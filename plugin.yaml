@@ -1,0 +1,6 @@
+plugin:
+    name: 'jonathandelorme.mapbox::lang.plugin.name'
+    description: 'jonathandelorme.mapbox::lang.plugin.description'
+    author: JonathanDelorme
+    icon: oc-icon-map-marker
+    homepage: 'https://github.com/delormejonathan/octobercms-mapbox'

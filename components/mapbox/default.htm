@@ -1,0 +1,38 @@
+<div id="{{__SELF__.id}}-container" class="delormejonathan-mapbox-container" style="height: {{ __SELF__.getProperty('height') }}px;"></div>
+{% put scripts %}
+{{ __SELF__.getProperty('title') }}
+<script>
+    L.mapbox.accessToken = '{{ api_key }}';
+    var map = L.mapbox.map('{{__SELF__.id}}-container', 'mapbox.streets');
+
+    var marker = L.mapbox.featureLayer({
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [
+                {{ __SELF__.getProperty('longitude') }},
+                {{ __SELF__.getProperty('latitude') }}
+            ]
+        },
+        properties: {
+            'title': "{{ __SELF__.getProperty('title') }}",
+            'description': "{{ __SELF__.getProperty('description') }}",
+            'marker-size': '{{ __SELF__.getProperty('size') }}',
+            'marker-color': '{{ __SELF__.getProperty('color') }}',
+            'marker-symbol': '{{ __SELF__.getProperty('symbol') }}'
+        }
+    }).addTo(map);
+
+    map.fitBounds(marker.getBounds());
+
+    {% if __SELF__.getProperty('zoom') > 0 %}
+    map.setView(map.getCenter(), {{ __SELF__.getProperty('zoom') }});
+    {% endif %}
+
+    marker.eachLayer(function(m) {
+        m.openPopup();
+    });
+
+    </script>
+{% endput %}
+

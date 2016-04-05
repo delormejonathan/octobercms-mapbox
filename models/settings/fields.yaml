@@ -1,0 +1,5 @@
+fields:
+  api_key:
+    label: jonathandelorme.mapbox::lang.plugin.settings.api_key.label
+    comment: jonathandelorme.mapbox::lang.plugin.settings.api_key.comment
+    type: text
